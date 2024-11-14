@@ -1,19 +1,25 @@
+'use server'
+
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
-import {UserJSON} from "@clerk/types";
 
 export async function POST (req: Request) {
+    console.log("called")
     const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
+    if (!WEBHOOK_SECRET) {
+        return new Response("Webhook secret is missing", { status: 500 });
+    }
     const header = await headers()
     const svix_id = header.get("svix-id");
     const svix_time = header.get("svix-timestamp")
     const svix_signature = header.get("svix-signature")
+    console.log({ svix_id, svix_signature, svix_time });
 
-    const payload = req.json()
+    const payload = await req.json()
     const body = JSON.stringify(payload)
 
     if(!svix_id||!svix_signature||!svix_time) return new Response("svix-head doesn't fit", {status: 400})
@@ -68,5 +74,11 @@ export async function POST (req: Request) {
     console.log(`Webhook with and ID of ${id} and type of ${type}`);
     console.log("Webhook body:", body);
 
-    return new Response("", { status: 200 });
+    return new Response("completed", { status: 200 });
 }
+
+
+
+
+
+
