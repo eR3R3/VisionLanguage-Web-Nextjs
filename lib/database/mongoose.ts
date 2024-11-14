@@ -15,6 +15,7 @@ export const connectToDatabase = async() => {
         cache.promise = mongoose.connect(MONGODB_URL, {dbName: 'Vision AI', bufferCommands: false})
     }
     cache.connection = await cache.promise
+    console.log("connect to db")
     return cache.connection
 }
 
