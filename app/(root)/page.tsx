@@ -8,21 +8,35 @@ import {connectToDatabase} from "@/lib/database/mongoose";
 
 
 const Home = () => {
-    const handleClick = () =>{
-        console.log(process.env.NEXT_PUBLIC_MONGODB_URL)
-        console.log(process.env.WEBHOOK_SECRET)
-    }
-
-    const handleCreateUser = () => {
-
-    }
+    // const handleClick = () =>{
+    //     console.log(process.env.NEXT_PUBLIC_MONGODB_URL)
+    //     console.log(process.env.WEBHOOK_SECRET)
+    // }
+    //
+    // const handleCreateUser = () => {
+    //     createUser({
+    //         clerkId: '5',
+    //         email: 'lucastao@gmail.com',
+    //         username: "Lucas Tao",
+    //         firstName: "Lucas",
+    //         lastName: 'Tao',
+    //         photo: '07, 06'
+    //     })
+    // }
   return (
     <div>
       <p>Home</p>
       <UserButton/>
-        <button onClick={connectToDatabase}>connect</button>
-        <button onClick={handleClick}>PrintMongodbUrl</button>
     </div>
   );
 }
 export default Home;
+
+
+
+
+
+
+
+
+

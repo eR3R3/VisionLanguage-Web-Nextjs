@@ -14,7 +14,7 @@ export async function createUser(user: CreateUserParams) {
         console.log("after connecting")
 
         const newUser = await User.create(user);
-
+        console.log("userCreated")
         return JSON.parse(JSON.stringify(newUser));
     } catch (error) {
         handleError(error);
