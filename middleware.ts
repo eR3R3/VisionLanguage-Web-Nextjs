@@ -1,7 +1,8 @@
-import { clerkMiddleware } from '@clerk/nextjs/server'
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+
 
 export default clerkMiddleware(async (auth, request) => {
-    console.log(`Request URL: ${request.url}`);
+
 })
 
 
