@@ -35,11 +35,12 @@ export async function POST (req: Request) {
     catch(err){
         return new Response(err as string, {status: 400})
     }
-
+    console.log("pass the verify")
     const {id} = event.data
     const type = event.type
 
     if(type==="user.created"){
+        console.log("trigger user.created")
         const { id, email_addresses, image_url, first_name, last_name, username } = event.data
         const user:CreateUserParams = {
             clerkId: id,
@@ -54,6 +55,7 @@ export async function POST (req: Request) {
     }
 
     if(type==="user.updated"){
+        console.log("trigger user.updated")
         const { id, image_url, first_name, last_name, username } = event.data
         const user = {
             firstName: first_name!,
@@ -66,6 +68,7 @@ export async function POST (req: Request) {
     }
 
     if (type === "user.deleted") {
+        console.log("trigger user.deleted")
         const { id } = event.data;
         const deletedUser = await deleteUser(id!);
         return NextResponse.json({ message: "OK", user: deletedUser });
